@@ -1,0 +1,26 @@
+// A launch configuration that compiles the extension and then opens it inside a new window
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Client-markdown-code-auto-complete",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": ["--disable-extensions", "--extensionDevelopmentPath=${workspaceRoot}/packages/client", "--folder-uri=${workspaceRoot}/sample"],
+			"outFiles": ["${workspaceRoot}/*/*/out/**/*.js"],
+			"preLaunchTask": {
+				"type": "npm",
+				"script": "watch"
+			}
+		},
+		{
+			"name": "Server-markdown-code-auto-complete",
+			"type": "node",
+			"request": "attach",
+			"port": 6009,
+			"restart": true,
+			"outFiles": ["${workspaceRoot}/*/*/out/**/*.js"]
+		}
+	]
+}

@@ -1,0 +1,89 @@
+{
+	"private": true,
+	"name": "markdown-code-auto-complete",
+	"displayName": "Markdown Code Auto Complete",
+	"description": "markdown js/css/html/vue code auto complete",
+	"version": "0.3.1",
+	"license": "MIT",
+	"author": "islsj",
+	"publisher": "islsj",
+	"icon": "images/icon.jpg",
+	"engines": {
+		"vscode": "^1.67.0"
+	},
+	"categories": [
+		"Other",
+		"Snippets",
+		"Programming Languages"
+	],
+	"keywords": [
+		"markdown",
+		"auto complete",
+		"markdown js css html vue",
+		"markdown code auto complete"
+	],
+	"activationEvents": [
+		"onLanguage:markdown"
+	],
+	"main": "./dist/client.js",
+	"contributes": {
+		"configuration": [
+			{
+				"title": "markdown-code-auto-complete",
+				"properties": {
+					"markdown-code-auto-complete.languages": {
+						"type": "array",
+						"default": [
+							[
+								"javascript|js",
+								{
+									"langExt": ".js"
+								}
+							],
+							[
+								"typescript|ts",
+								{
+									"langExt": ".ts"
+								}
+							],
+							[
+								"html",
+								{
+									"langExt": ".html"
+								}
+							],
+							[
+								"css",
+								{
+									"langExt": ".css"
+								}
+							],
+							[
+								"vue",
+								{
+									"langExt": ".html"
+								}
+							]
+						],
+						"description": "设置每种语言的执行器。",
+						"scope": "resource"
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"prebuild": "cd ../.. && npm run build",
+		"build": "node scripts/build -- --minify",
+		"watch": "npm run build -- --watch",
+		"pack": "npm run build && vsce package",
+		"release": "npm run build && vsce publish"
+	},
+	"devDependencies": {
+		"@markdown-code-auto-complete/server": "workspace:*",
+		"@types/vscode": "1.67.0",
+		"esbuild": "0.15.18",
+		"vsce": "latest",
+		"vscode-languageclient": "^8.1.0"
+	}
+}
