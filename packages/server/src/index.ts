@@ -29,7 +29,7 @@ connection.onInitialize((_params: InitializeParams) => {
 				triggerCharacters: ["("],
 			},
 			hoverProvider: true,
-			definitionProvider: true,
+			//definitionProvider: true,
 
 			//codeActionProvider: true,
 			//completionProvider: true,

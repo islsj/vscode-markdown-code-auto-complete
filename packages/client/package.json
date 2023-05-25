@@ -2,8 +2,8 @@
 	"private": true,
 	"name": "markdown-code-auto-complete",
 	"displayName": "Markdown Code Auto Complete",
-	"description": "markdown js/css/html/vue code auto complete",
-	"version": "0.3.1",
+	"description": "Markdown js/css/html/vue code auto complete",
+	"version": "0.3.2",
 	"license": "MIT",
 	"author": "islsj",
 	"publisher": "islsj",
@@ -20,6 +20,7 @@
 		"markdown",
 		"auto complete",
 		"markdown js css html vue",
+		"markdown suggest",
 		"markdown code auto complete"
 	],
 	"activationEvents": [

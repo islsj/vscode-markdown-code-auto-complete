@@ -7,7 +7,7 @@
 		"watch:esbuild": "cd ./packages/client && npm run watch",
 		"prerelease": "npm run build",
 		"pack": "cd ./packages/client && npm run pack",
-		"release": "cd ./packages/client && npm run release"
+		"publish": "cd ./packages/client && npm run release"
 	},
 	"devDependencies": {
 		"@types/node": "latest",

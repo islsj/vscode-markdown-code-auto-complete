@@ -38,4 +38,4 @@ settings.json
 ## Build .vsix
 
 - Run `pnpm run pack` in this folder
-- `packages/vscode/vscode-html1-0.0.1.vsix` will be created, and you can manual install it to VSCode.
+- `packages/vscode/markdown-code-auto-complete-0.0.1.vsix` will be created, and you can manual install it to VSCode.

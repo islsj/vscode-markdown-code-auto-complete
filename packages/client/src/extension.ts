@@ -31,7 +31,7 @@ export function activate(context: vscode_0.ExtensionContext) {
 	});
 
 	const clientOptions: lsp.LanguageClientOptions = {
-		documentSelector: [{ language: "markdown" }],
+		documentSelector: [{ scheme: "file", language: "markdown" }],
 		middleware: {
 			provideSignatureHelp: async (document, range) => {
 				const snippetContent = getCursorLineSnippetContent(document);
@@ -45,18 +45,18 @@ export function activate(context: vscode_0.ExtensionContext) {
 					return undefined;
 				}
 			},
-			provideDefinition: async (document, range) => {
-				const snippetContent = getCursorLineSnippetContent(document);
-				// 光标在代码块内
-				if (snippetContent) {
-					//	添加代码块映射
-					snippetMap.set(snippetContent.filePath, snippetContent.snippet);
-					//	发送信号
-					return await commands.executeCommand<vscode_0.DefinitionLink[]>("vscode.executeDefinitionProvider", snippetContent.filecUri, range);
-				} else {
-					return undefined;
-				}
-			},
+			//provideDefinition: async (document, range) => {
+			//	const snippetContent = getCursorLineSnippetContent(document);
+			//	// 光标在代码块内
+			//	if (snippetContent) {
+			//		//	添加代码块映射
+			//		snippetMap.set(snippetContent.filePath, snippetContent.snippet);
+			//		//	发送信号
+			//		return await commands.executeCommand<vscode_0.DefinitionLink[]>("vscode.executeDefinitionProvider", snippetContent.filecUri, range);
+			//	} else {
+			//		return undefined;
+			//	}
+			//},
 			provideHover: async (document: vscode_0.TextDocument, range) => {
 				const snippetContent = getCursorLineSnippetContent(document);
 				// 光标在代码块内
@@ -69,7 +69,7 @@ export function activate(context: vscode_0.ExtensionContext) {
 					return undefined;
 				}
 			},
-			provideCompletionItem: async (document, range) => {
+			provideCompletionItem: async (document, range, context, token, next) => {
 				const snippetContent = getCursorLineSnippetContent(document);
 				// 光标在代码块内
 				if (snippetContent) {
@@ -78,7 +78,7 @@ export function activate(context: vscode_0.ExtensionContext) {
 					//	发送信号
 					return await commands.executeCommand<vscode_0.CompletionList>("vscode.executeCompletionItemProvider", snippetContent.filecUri, range);
 				} else {
-					return undefined;
+					return next(document, range, context, token);
 				}
 			},
 		},
