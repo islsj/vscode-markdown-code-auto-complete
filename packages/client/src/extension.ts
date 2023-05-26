@@ -4,7 +4,7 @@ import { commands, workspace } from "vscode";
 import * as lsp from "vscode-languageclient/node";
 import { getCursorLineSnippetContent } from "./embeddedSupport";
 import { CHANNEL_MAP } from "./constant";
-//
+
 let client: lsp.BaseLanguageClient;
 export function activate(context: vscode_0.ExtensionContext) {
 	const serverModule = vscode_0.Uri.joinPath(context.extensionUri, "dist", "server.js");
@@ -69,7 +69,7 @@ export function activate(context: vscode_0.ExtensionContext) {
 					return undefined;
 				}
 			},
-			provideCompletionItem: async (document, range, context, token, next) => {
+			provideCompletionItem: async (document, range) => {
 				const snippetContent = getCursorLineSnippetContent(document);
 				// 光标在代码块内
 				if (snippetContent) {
@@ -78,7 +78,7 @@ export function activate(context: vscode_0.ExtensionContext) {
 					//	发送信号
 					return await commands.executeCommand<vscode_0.CompletionList>("vscode.executeCompletionItemProvider", snippetContent.filecUri, range);
 				} else {
-					return next(document, range, context, token);
+					return undefined;
 				}
 			},
 		},
